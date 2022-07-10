@@ -1,5 +1,7 @@
 package guru.springframework.sfgdi;
 
+import guru.springframework.sfgdi.config.SfgConfiguration;
+import guru.springframework.sfgdi.config.SfgConstructorConfig;
 import guru.springframework.sfgdi.controllers.*;
 import guru.springframework.sfgdi.datasource.FakeDataSource;
 import org.springframework.boot.SpringApplication;
@@ -30,10 +32,25 @@ public class SfgdiApplication {
         PetController petController = context.getBean("petController", PetController.class);
         System.out.println(petController.whichIsTheBestPet());
 
+        System.out.println("---- Fake Datasource");
         FakeDataSource fakeDataSource = context.getBean(FakeDataSource.class);
         System.out.println(fakeDataSource.getUsername());
         System.out.println(fakeDataSource.getPassword());
         System.out.println(fakeDataSource.getJdbcurl());
+
+        System.out.println("---- Properties Binding Config");
+        SfgConfiguration sfgConfiguration = context.getBean(SfgConfiguration.class);
+        System.out.println(sfgConfiguration.getUsername());
+        System.out.println(sfgConfiguration.getPassword());
+        System.out.println(sfgConfiguration.getJdbcurl());
+
+        System.out.println("---- Constructor Props Binding Config");
+        SfgConstructorConfig sfgConstructorConfig = context.getBean(SfgConstructorConfig.class);
+        System.out.println(sfgConstructorConfig.getUsername());
+        System.out.println(sfgConstructorConfig.getPassword());
+        System.out.println(sfgConstructorConfig.getJdbcurl());
+
+
     }
 
 }
